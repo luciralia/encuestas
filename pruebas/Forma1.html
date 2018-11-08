@@ -1,0 +1,288 @@
+
+<!DOCTYPE html>
+<html dir="ltr" lang="es">
+<head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="author" content="Facultad de Ingenieria" />
+
+    <!-- Stylesheets
+    ============================================= -->
+	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="../css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="../css/style.css" type="text/css" />
+    <link rel="stylesheet" href="../css/dark.css" type="text/css" />
+    <link rel="stylesheet" href="../css/font-icons.css" type="text/css" />
+    <link rel="stylesheet" href="../css/animate.css" type="text/css" />
+    <link rel="stylesheet" href="../css/magnific-popup.css" type="text/css" />
+    <link rel="stylesheet" href="../css/colors.css" type="text/css" />
+    <link rel="stylesheet" href="../css/responsive.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+   		
+        <!--[if lte IE 8]><script src="js/ie6/warning.js"></script><script>window.onload=function(){e("js/ie6/")}</script><![endif]-->
+
+    <!-- External JavaScripts
+    ============================================= -->
+	<script type="text/javascript" src="../js/jquery.js"></script>
+	<script type="text/javascript" src="../js/plugins.js"></script>
+     
+	<!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>-->
+    <script >
+ 
+$(function(){
+	$("#id_asig").change(function(){ //se activa cuando se selecciona la asignatura
+	id_asig=$(this).val() //Toma el valor seleccionado
+   //envio a la pagina donde hará la consulta
+    $.get("../inc/configuraResultados.inc.php?idasig="+id_asig,
+	          function(data){ 
+			       $("#id_grupo").html(data);
+			  });
+  });	
+});</script>
+
+    <!-- Titulo
+    ============================================= -->
+    
+    <title>Sistema de Encuestas </title>
+  
+</head>
+
+<body class="stretched">
+
+    <!-- Document Wrapper
+    ============================================= -->
+    <div id="wrapper" class="clearfix">
+
+        <!-- Header
+        ============================================= -->
+       <header id="header" class="sticky-style-2">
+
+            <div class="container clearfix">
+
+                <!-- Logo
+                ============================================= -->
+                <div id="logo" class="divcenter">
+                	
+                    
+                   <img src="../images/banner_principalsin.jpg" width="1024" height="103" >
+                     
+               </div><!-- #logo end -->
+
+            </div>
+
+            <div id="header-wrap">
+
+                <!-- Menu 
+                ============================================= -->
+                
+                <nav id="primary-menu" class="style-2 center">
+
+                    <div class="container clearfix">
+
+                        <div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+                               
+                                 
+      
+
+<ul>
+                   
+        <li class="current"><a href="../view/inicio.html.php"><div>Inicio</div></a></li>
+       
+        <li><a href="#"><div>Configurar Encuesta<img src="../images/icons/mainsubmenured2.png" alt="Submenu"></div></a>
+              <ul>
+                        <li><a href="../view/inicio.html.php?mod=cfp"><div>Preguntas</div></a></li>
+                        <li><a href="../view/inicio.html.php?mod=mtra"><div>Muestra Encuesta</div></a></li>
+             </ul> 
+        </li>           
+        <li><a href="../view/inicio.html.php?mod=exp" ><div>Reportes</div></a></li>
+        <li><a href="../view/inicio.html.php?mod=imp" ><div>Importar Datos</div></a></li>
+        <li><a href="../inc/salir.inc.php" ><div>Salir</div></a></li>
+                    
+ </ul>
+                   
+                                  </div>
+
+                </nav><!-- #primary-menu end -->
+            
+            </div>
+
+        </header><!-- #header end -->
+
+
+en inicio.htmlArray
+(
+    [id_div] => 1
+    [id_dep] => 1
+    [id_usuario] => 
+    [usuario] => die
+    [password] => 827ccb0eea8a706c4c34a16891f84e7b
+    [tipo_usuario] => 9
+    [nombre] => Alejandro
+    [a_paterno] => Velázquez
+    [a_materno] => Mena
+    [email] => mena@fi-b.unam.mx
+    [tel1] => 56223068  
+    [tel2] => 
+    [area] => 
+    [ext] => 
+    [id_lab] => 
+    [nombre_lab] => 
+    [detalle_ub] => 
+    [certificado] => 
+    [id_edif] => 
+    [permisos] => 
+    [nombre_dep] => Departamento de Computación
+    [nombre_div] => División de Ingeniería Eléctrica
+    [siglas] => DIE
+)
+
+        <!-- Titulo
+        ============================================= -->
+        <section id="page-title">
+
+           <!--<div class="container clearfix">-->
+           <div class="container">
+                 
+                <div class="titulo-interfaz">
+                   <h2>Configurando Encuestas</h2>
+                   
+                            <h1></h1> 
+                  </div>
+         
+                  
+          </div>
+        </section><!-- Titulo end -->
+
+        <!-- Contenido
+        ============================================= -->
+        <section id="content">
+
+            <div class="content-wrap">
+
+                  
+                    <div class="clear"></div>
+
+                     
+                         
+                        
+                 
+           </div>
+ 
+        <!-- Contenido
+        ============================================= -->
+        <section id="content">
+
+            <div class="content-wrap">
+
+                    <div class="clear"></div>
+
+                     
+                                  
+
+  
+  <div class="container">
+                       
+                <div class="col_full panel panel-default">
+                                  <div class="panel-heading">
+					                     <h4 class="panel-title"> Departamentos</h4>
+                                  </div> <!--fin div  class="panel-heading">-->
+                                   <div class="panel-body">
+                                     
+                                   <form>
+                                        <table  class="table">
+                                        
+                                           <tr><td>
+                                           
+                                                                                División:    
+                                          <select name="id_div" id="id_div" >
+                                                                                                          	                                          <option value="1">División de Ingeniería Eléctrica</option>
+			                                      		                                  </select>
+                                         
+                                          </td>
+                                                 <td>
+                                                    Depto: <select name="id_dep" id="id_dep" >                                                                <option value="0">Seleccionar Depto</option>
+                                                            </select>
+                                                      
+                                                     </td>
+                                             </tr>
+                                           </table> 
+                                      
+                                 <input name="p" type="hidden" value="" />
+                       </form>
+                    </div><!--fin div  class="panel-body">-->
+                 </div>    <!-- fin de col_full que abarca la cabecera para elegir div/deptos-->
+                 
+              <div class="col_two_third panel panel-default">
+
+                        <!-- Default panel contents -->
+                            <div class="panel-heading"> <h3>Preguntas para el laboratorio</h3></div>
+                            <div class="panel-body">
+                               
+                       
+                              <table class="table">
+                                <thead>
+                                    <tr>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>  
+                                     <div id="muestraPreguntas">
+  
+                                    
+    
+		 </tbody>
+       </table>
+       
+		</div> <!--muestrapreg-->
+       
+       </div>  <!--<div class="panel-body">-->      
+    
+		 <div class="col_one_third panel panel-default col_last">
+                <div class="panel-heading">
+                                          
+					              <h4 class="panel-title"> Laboratorios </h4>
+                                  </div> <!--<div class="panel-heading">-->
+                                   <div class="panel-body">
+                                      
+                                          <div id="id_lab">
+                                           Laboratorios: <select name="id_lab" id="id_lab" > 
+	                                                          <option value="0">Seleccionar Laboratorio</option>;
+                                                         </select>
+                                          
+                                     
+                                              </div>                         
+    
+                        
+                          <!-- </table> -->
+                           
+                        
+                           
+                            </div> <!--fin de <div id="muestraLabsCheck">-->
+                         </div> <!--div panel body ers del otra seccion-->
+                 </div> <!-- <div class="col_one_third panel panel-default col_last">-->                                    
+        </div> <!--<div class="col_two_third panel panel-default">-->
+    
+
+            
+                 
+                 
+            </div>
+
+        </section><!-- #contenido end -->
+            
+
+</section>
+
+   <!--     
+    </div><!-- #wrapper end 'images/footer-bg.jpg'-->
+
+    <!-- Go To Top
+    ============================================= -->
+    <div id="gotoTop" class="icon-angle-up"></div>
+
+    <!-- Footer Scripts
+    ============================================= -->
+    <script type="text/javascript" src="../js/functions.js"></script>
+
+</body>
+</html>           

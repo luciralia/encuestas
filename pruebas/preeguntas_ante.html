@@ -1,0 +1,288 @@
+<script type="text/javascript">
+function myFunctionComentarios() {
+		  var x = document.getElementById("calif").value;
+		   
+          if (document.getElementById("calif").value==4  )
+		      document.getElementById("comentapreg").disabled = false; // habilitar
+		  else
+			  document.getElementById("comentapreg").disabled = true; // deshabilitar
+			 
+	 }
+	 
+</script>	 
+<?php  
+ 
+	 
+require_once('../conexion.php');
+require_once('../clases/encuesta.class.php');
+
+require_once('../clases/usuario.class.php');
+
+echo 'El usuario es';
+
+print_r($_SESSION);
+echo 'los valores son ';
+
+print_r($_POST);
+
+
+$combo = new encuesta();
+//$radial = new encuesta();
+
+$usu=new usuario();
+
+$fecha_actual=date("Y-m-d",time());
+$hora_actual = date("H:i");
+echo 'hora_actual'.$hora_actual;
+
+
+$querytopico="select * from  cat_topico";
+
+
+$topico=pg_query($con,$querytopico);
+
+
+
+?>
+
+<tr>
+       <td><div style="text-align:center;"> <?php  echo "<h2>" . $usu->getNombre($_SESSION['no_cuenta']) . "</h2>"; ?></div>  </td>
+</tr>
+
+
+<form action="../inc/procesaencuesta.php" method="post" name="form_edita" class="formul" onsubmit="return validaNum(this);" >
+
+
+<table  class="formulario">
+
+   <tr align="right"><h3>Alumno</h3></tr> 
+   <div>
+   <tr>
+     <td   >No Cuenta</td>
+     <td><input type="text" name="no_cuenta" id="no_cuenta"size="10" value=" <?php echo $_SESSION['no_cuenta'];?> "></td>
+     <td   >Nombre</td>
+     <td><input type="text" name="nombre_alumno" id="nombre_alumno"size="40" value="<?php echo  $usu->getNombre($_SESSION['no_cuenta']);?> "></td>
+   </tr>  
+   </div>
+   <div>
+   <tr>
+    
+      <td   >Asignatura</td>
+     <td><input type="text" name="id_asig" id="id_asig"size="30" value=" <?php echo $usu->getnomAsig($_SESSION['id_asig']);?>  " ></td>
+     <td  >Grupo</td>
+     <td><input type="text" name="no_grupo" id="no_grupo"size="5" value=" <?php echo $_SESSION['no_grupo'];?> " ></td>
+   </tr>
+   </div>
+   <div> 
+   <tr> 
+    <td  >Práctica</td>
+     <td> <input type="text" name="id_practica_asig" id="id_practica_asig"size="30" value=" <?php echo $combo->nomPrac($_SESSION['id_practica_asig']);?> " ></td>
+      <td  >Fecha</td>
+     <td> <input type="text" name="id_fecharealiza" id="id_fecharealiza"size="10" value=" <?php echo date('Y-m-d');?> " ></td>
+     
+   </tr>  
+   </div> 
+   <?php
+  
+   while ($nomTopico = pg_fetch_array($topico, NULL,PGSQL_ASSOC)) 
+		{ 
+       
+  ?>
+    
+   <tr align="right"><h3><?php echo $nomTopico['nomb_topico'];?></h3></tr>
+   <tr>
+   
+   <?php 
+ 
+	
+     $querypreg="SELECT * FROM cat_topico ct
+                JOIN  cat_preg cp
+                ON cp.id_topico=ct.id_cat_topico
+			    WHERE ct.id_cat_topico=". $nomTopico['id_cat_topico'] .
+				"ORDER BY cp.id_preg" ;
+			   		   
+    $preg = pg_query($con,$querypreg);           
+   
+   
+	$queryresp="select * from respuesta r
+               left join cat_calif_resp cr
+               on r.id_cat_resp=cr.id_cat_calif
+               left join topicopreg tp
+               on tp.id_respuesta=r.id_respuesta
+			   ";          
+   $resp = pg_query($con,$queryresp);     
+   
+   
+   
+    while ($pregunta= pg_fetch_array($preg, NULL,PGSQL_ASSOC)) 
+		{ 
+   
+   ?>
+   
+   <tr>
+   <td ><?php echo $pregunta['pregunta_texto'];?> </td>
+   
+   
+   
+    <?php if  ( $nompregunta['id_preg']!= 14 && $nompregunta['id_preg']!= 15 && $nompregunta['id_preg']!= 16 && $nompregunta['id_preg']!= 17) { ?>
+      <?php if
+                 while ($respuesta= pg_fetch_array($esp, NULL,PGSQL_ASSOC)) 
+		          { ?>
+  
+                          <td ><?php $combo->combopreg($nompregunta['calif'],$nompregunta['id_preg'])?></td>
+    
+    
+                   <?php
+	        }
+		?>
+        
+        <?php
+		if ($nompregunta['id_preg']==1){
+		?>
+       <td > Comentarios  </td>
+       <td align="left"><input type="text" name="resp_abierta1" id="resp_abierta1" size="50"   ></td>
+     
+       <?php
+		}
+		?>
+       <?php
+		if ($nompregunta['id_preg']==2){
+		?>
+       <td > Comentarios  </td>
+       <td align="left"><input type="text" name="resp_abierta2" id="resp_abierta2" size="50"   ></td>
+     
+       <?php
+		}
+		?>
+        <?php
+		if ($nompregunta['id_preg']==3){
+		?>
+       <td > Comentarios  </td>
+       <td align="left"><input type="text" name="resp_abierta3" id="resp_abierta3" size="50"  ></td>
+     
+       <?php
+		}
+		?>
+        <?php
+		if ($nompregunta['id_preg']==4){
+		?>
+       <td > Comentarios  </td>
+       <td align="left"><input type="text" name="resp_abierta4" id="resp_abierta4" size="50"  ></td>
+     
+       <?php
+		}
+		?>
+        <?php
+		if ($nompregunta['id_preg']==5){
+		?>
+       <td > Comentarios  </td>
+       <td align="left"><input type="text" name="resp_abierta5" id="resp_abierta5" size="50"  ></td>
+     
+       <?php
+		}
+		?>
+        <?php
+		if ($nompregunta['id_preg']==6){
+		?>
+       <td > Comentarios  </td>
+       <td align="left"><input type="text" name="resp_abierta6" id="resp_abierta6" size="50"  ></td>
+     
+       <?php
+		}
+		?>
+        <?php
+		if ($nompregunta['id_preg']==7){
+		?>
+       <td > Comentarios  </td>
+       <td align="left"><input type="text" name="resp_abierta7" id="resp_abierta7" size="50"  ></td>
+     
+       <?php
+		}
+		?>
+        <?php
+		if ($nompregunta['id_preg']==8){
+		?>
+       <td > Comentarios  </td>
+       <td align="left"><input type="text" name="resp_abierta8" id="resp_abierta8" size="50"></td>
+     
+       <?php
+		}
+		?>
+        <?php
+		if ($nompregunta['id_preg']==9){
+		?>
+       <td > Comentarios  </td>
+       <td align="left"><input type="text" name="resp_abierta9" id="resp_abierta9" size="50" ></td>
+     
+       <?php
+		}
+		?>
+        <?php
+		if ($nompregunta['id_preg']==10){
+		?>
+       <td > Comentarios  </td>
+       <td align="left"><input type="text" name="resp_abierta10" id="resp_abierta10" size="50" ></td>
+     
+       <?php
+		}
+		?>
+        <?php
+		if ($nompregunta['id_preg']==11){
+		?>
+       <td > Comentarios  </td>
+       <td align="left"><input type="text" name="resp_abierta11" id="resp_abierta11" size="50"  ></td>
+     
+       <?php
+		}
+		?>
+        <?php
+		if ($nompregunta['id_preg']==12){
+		?>
+       <td > Comentarios  </td>
+       <td align="left"><input type="text" name="resp_abierta12" id="resp_abierta12" size="50"  ></td>
+     
+       <?php
+		}
+		?>
+        <?php
+		if ($nompregunta['id_preg']==13){
+		?>
+       <td > Comentarios  </td>
+       <td align="left"><input type="text" name="resp_abierta13" id="resp_abierta13" size="50"  ></td>
+     
+       <?php
+		}
+		?>
+       </tr>
+       <table>
+  
+  <?php
+	
+		}
+		
+		}
+?>
+ 
+   <br/>
+ <br/>
+  <tr>
+   
+    <td colspan="3" align="center">
+    
+    <input type="submit" name="accione" value="Guardar" />
+    <input type="reset" name="accione"  value="Limpiar" />
+	<input type="submit" name="accione" value="Cancelar" />
+    
+    </td>
+    </tr>    
+   </table>
+<br/>
+<br/>
+
+
+<input name="no_cuenta" type="hidden" value="<?php echo $_GET['no_cuenta']; ?>" />
+<input name="mod" type="hidden" value="<?php echo $_GET['mod']; ?>" />
+<input name="id_asig" type="hidden" value="<?php echo $_POST['id_asig']; ?>" />
+<input name="no_grupo" type="hidden" value="<?php echo $_POST['no_grupo']; ?>" />
+<input name="id_practica_asig" type="hidden" value="<?php echo $_POST['id_practica_asig']; ?>" />
+

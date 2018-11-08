@@ -1,0 +1,33 @@
+<?php
+    session_start();
+    require_once('../conexion.php');
+   
+	require_once('../clases/configura.class.php');
+?>
+<table cellpadding="2" class="formulario">
+  <tr>
+    <td width="480" align="right" >Tipo de mantenimiento</td>
+    <td colspan="2" ><div class="recuadro">
+      <p>
+	
+	<!--Bloque para selecconar mantenimiento preventivo o correctivo, el primero es para internos generales los otros dos es para bitácoras -->
+	<?php  if ($_GET['mod']=='servi'|| $_GET['mod']=='serv') { ?>
+		        <label><input name="tipo_mant" type="radio" id="tipo_mant_0" value="P" checked="checked" />Preventivo</label>
+			        &nbsp;&nbsp;&nbsp;&nbsp;
+		        <label><input type="radio" name="tipo_mant" value="C" id="tipo_mant_1" />Correctivo</label>
+        <?php } ?>
+	
+     <!-- aquí inicia para bitácoras -->
+	
+	
+		        <label><input name="tipo_mant" type="radio" id="tipo_mant_0" value="P" checked="checked" />Preventivo</label>
+
+		        <label><input type="radio" name="tipo_mant" value="C" id="tipo_mant_1" checked="checked" />Correctivo</label>
+      
+    <!-- aquí termina para bitácoras -->
+        
+        
+        <br />
+      </p>
+    </div></td>
+  </tr>

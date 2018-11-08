@@ -1,0 +1,501 @@
+
+<!DOCTYPE html>
+<html dir="ltr" lang="es">
+<head>
+
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+	<meta name="author" content="Facultad de Ingenieria" />
+
+    <!-- Stylesheets
+    ============================================= -->
+	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="../css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="../css/style.css" type="text/css" />
+    <link rel="stylesheet" href="../css/dark.css" type="text/css" />
+    <link rel="stylesheet" href="../css/font-icons.css" type="text/css" />
+    <link rel="stylesheet" href="../css/animate.css" type="text/css" />
+    <link rel="stylesheet" href="../css/magnific-popup.css" type="text/css" />
+    <link rel="stylesheet" href="../css/colors.css" type="text/css" />
+    <link rel="stylesheet" href="../css/responsive.css" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+   		
+        <!--[if lte IE 8]><script src="js/ie6/warning.js"></script><script>window.onload=function(){e("js/ie6/")}</script><![endif]-->
+
+    <!-- External JavaScripts
+    ============================================= -->
+	<script type="text/javascript" src="../js/jquery.js"></script>
+	<script type="text/javascript" src="../js/plugins.js"></script>
+     
+	<!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>-->
+    <script >
+ 
+$(function(){
+	$("#id_asig").change(function(){ //se activa cuando se selecciona la asignatura
+	id_asig=$(this).val() //Toma el valor seleccionado
+   //envio a la pagina donde hará la consulta
+    $.get("../inc/configuraResultados.inc.php?idasig="+id_asig,
+	          function(data){ 
+			       $("#id_grupo").html(data);
+			  });
+  });	
+});</script>
+
+    <!-- Titulo
+    ============================================= -->
+    
+    <title>Sistema de Encuestas </title>
+  
+</head>
+
+<body class="stretched">
+
+    <!-- Document Wrapper
+    ============================================= -->
+    <div id="wrapper" class="clearfix">
+
+        <!-- Header
+        ============================================= -->
+       <header id="header" class="sticky-style-2">
+
+            <div class="container clearfix">
+
+                <!-- Logo
+                ============================================= -->
+                <div id="logo" class="divcenter">
+                	
+                    
+                   <img src="../images/banner_principalsin.jpg" width="1024" height="103" >
+                     
+               </div><!-- #logo end -->
+
+            </div>
+
+            <div id="header-wrap">
+
+                <!-- Menu 
+                ============================================= -->
+                
+                <nav id="primary-menu" class="style-2 center">
+
+                    <div class="container clearfix">
+
+                        <div id="primary-menu-trigger"><i class="icon-reorder"></i></div>
+                               
+                                 
+      
+
+<ul>
+                   
+        <li class="current"><a href="../view/inicio.html.php"><div>Inicio</div></a></li>
+       
+        <li><a href="#"><div>Configurar Encuesta<img src="../images/icons/mainsubmenured2.png" alt="Submenu"></div></a>
+              <ul>
+                        <li><a href="../view/inicio.html.php?mod=cfp"><div>Preguntas</div></a></li>
+                        <li><a href="../view/inicio.html.php?mod=mtra"><div>Muestra Encuesta</div></a></li>
+                       
+              </ul> 
+        </li>           
+             <li><a href="../view/inicio.html.php?mod=exp" ><div>Reportes</div></a></li>
+             <li><a href="../inc/salir.inc.php" ><div>Salir</div></a></li>
+                    
+ </ul>
+                   
+                                  </div>
+
+                </nav><!-- #primary-menu end -->
+            
+            </div>
+
+        </header><!-- #header end -->
+
+
+
+        <!-- Titulo
+        ============================================= -->
+        <section id="page-title">
+
+           <!--<div class="container clearfix">-->
+           <div class="container">
+                 
+                <div class="titulo-interfaz">
+                   <h2>Configurando Encuestas</h2>
+                   
+                            <h1></h1> 
+                  </div>
+         
+                  
+          </div>
+        </section><!-- Titulo end -->
+
+        <!-- Contenido
+        ============================================= -->
+        <section id="content">
+
+            <div class="content-wrap">
+
+                  
+                    <div class="clear"></div>
+
+                     
+                         
+                        
+                 
+           </div>
+  
+
+        <!-- Contenido
+        ============================================= -->
+      <section id="content clearfix">
+
+
+  
+  <tr>
+    <td align="center"></td>
+  </tr>
+
+
+
+
+<script type="text/javascript">
+/*$(document).ready(function() {
+    $('#id_dep').on('change', function() {
+        //$('.id_dep').removeClass('active');
+        $("#resultadoBusqueda").load('../inc/muestraLab.inc.php');
+        return false;
+    });
+	
+
+    $('#div-btn2').on('click', function() {
+        //$('.navbar-nav li').removeClass('active');
+        $("#central").load('../inc/muestraEncuesta.inc.php');
+        return false;
+    });
+
+    
+});*/
+
+			$(document).ready(function(){
+				$("#id_div").click(function () {
+ 
+					$("#id_div option:selected").each(function () {
+						id_div = $(this).val();
+					
+						    $.post("../inc/getDept.inc.php", { id_div: id_div }, function(data){
+							$("#id_dep").html(data);
+					
+						});            
+					});
+				})
+			});
+			
+		    $(document).ready(function(){
+				$("#id_dep").click(function () {
+ 
+					$("#id_dep option:selected").each(function () {
+						id_depto = $(this).val();
+						
+						       $.post("../inc/muestraLab.inc.php", { id_dep: id_depto }, function(data){
+							       $("#muestraLabs").html(data);
+					
+						});   
+						     
+					});
+				})
+			});
+	/*$(document).ready(function(){
+				$("#id_dep").change(function () {
+ 
+					$("#id_dep option:selected").each(function () {
+						id_depto = $(this).val();
+						alert("capturo dept: " + id_depto);
+						    
+						       $.post("../inc/muestraLab.inc.php", { id_dep: id_depto }, function(data){
+							       $("#id_lab").html(data);
+					
+						});   
+						        $("#resultadoBusqueda").load('../inc/muestraLab.inc.php');  
+					});
+				})
+			});
+			
+
+   
+ $(document).ready(function() {
+    $("#resultadoBusqueda").html('Jscript Vacio');
+});
+
+function Labos() {
+	
+		$(document).ready(function(){
+				$("#id_dep").change(function () {
+                   id_dep = $("selected#id_dep").val();
+					$("#id_dep option:selected").each(function () {
+						var id_depto = $(this).val();
+						
+						alert("capturo en buscar: " + id_depto);
+						if(id_depto != "") {
+						    $.post("../inc/editaPregunta.inc.php", { id_dep: id_depto }, function(data){
+							$("#resultadoBusqueda").html(data);
+					  //alert("capturo " + con);
+						});   
+						}else{
+							$("#resultadoBusqueda").html('<p>Vaciooo </p>');
+						};
+					});
+				});
+		});
+};
+ */
+</script>
+
+
+      <div class="container"> 
+              
+                               
+                <div class="col_full panel panel-default">
+                                  <div class="panel-heading">
+					                     <h4 class="panel-title"> Departamentos</h4>
+                                  </div> <!--fin div  class="panel-heading">-->
+                                   <div class="panel-body">
+                                     <p>
+                                       <form>
+                                        <table  class="table">
+                                        
+                                           <tr><td>
+                                                                                División:    
+                                          <select name="id_div" id="id_div" >
+                                                                                                          	                                          <option value="1">División de Ingeniería Eléctrica</option>
+			                                      		                                  </select>
+                                          </td>
+                                          <td>
+                                                 Depto: <select name="id_dep" id="id_dep" >                                                           <option value="0">Seleccionar Depto</option>
+                                                
+                                                        </select>
+                                                     </td>
+                                             </tr>
+                                           </table>
+                                       </p>    
+                                     </div><!--fin div  class="panel-body">-->
+                                                 
+                                 <input name="p" type="hidden" value="" />
+                   </form>
+                  
+                </div>    <!-- fin de col_full que abarca la cabecera para elegir div/deptos-->
+                       
+                 
+                 
+                   				   
+				
+
+              <div class="col_two_third panel panel-default">
+             
+                    <div class="panel-heading"><h4>Seleccione las preguntas para el laboratorio(s)</h4></div>
+              
+              
+                     <div class="panel-body">
+              
+                         <form action="../inc/guardar.inc.php" method="post" name="formularioTopico" class="form"  >
+
+                              <table  class="table">
+
+                        
+                      
+                                  <tr bgcolor="#ccc">
+                                        <td ><h4>A</h4></td>
+                                        <td ><h4>Desarrollo de práctica</h4></td>
+                                        <td width="15%" align="center" ><h4>Activa</h4></td>                      
+                                 </tr>
+                                       					           <tr> 
+              				                  <td >1</td>
+                                              <td>La disponibilidad del equipo de cómputo para realizar las prácticas fue</td>
+                                              <td width="15%" align="center" ><input type="checkbox" name="id_preg1" value="1"/></td>
+                                       </tr>
+				                        					           <tr> 
+              				                  <td >2</td>
+                                              <td>El funcionamiento del equipo de cómputo para realizar las prácticas fue</td>
+                                              <td width="15%" align="center" ><input type="checkbox" name="id_preg2" value="2"/></td>
+                                       </tr>
+				                        					           <tr> 
+              				                  <td >3</td>
+                                              <td>El funcionamiento del software fue</td>
+                                              <td width="15%" align="center" ><input type="checkbox" name="id_preg3" value="3"/></td>
+                                       </tr>
+				                        					           <tr> 
+              				                  <td >4</td>
+                                              <td>La disponibilidad de la página web del laboratorio fue</td>
+                                              <td width="15%" align="center" ><input type="checkbox" name="id_preg4" value="4"/></td>
+                                       </tr>
+				                        
+                      
+                                  <tr bgcolor="#ccc">
+                                        <td ><h4>B</h4></td>
+                                        <td ><h4>Personal de laboratorio</h4></td>
+                                        <td width="15%" align="center" ><h4>Activa</h4></td>                      
+                                 </tr>
+                                       					           <tr> 
+              				                  <td >5</td>
+                                              <td>En caso de haber requerido la atención por parte del personal del laboratorio, ésta fue</td>
+                                              <td width="15%" align="center" ><input type="checkbox" name="id_preg5" value="5"/></td>
+                                       </tr>
+				                        
+                      
+                                  <tr bgcolor="#ccc">
+                                        <td ><h4>C</h4></td>
+                                        <td ><h4>Profesor</h4></td>
+                                        <td width="15%" align="center" ><h4>Activa</h4></td>                      
+                                 </tr>
+                                       					           <tr> 
+              				                  <td >6</td>
+                                              <td>La manera en que el profesor explicó y supervisó el desarrollo de la práctica fue </td>
+                                              <td width="15%" align="center" ><input type="checkbox" name="id_preg6" value="6"/></td>
+                                       </tr>
+				                        					           <tr> 
+              				                  <td >7</td>
+                                              <td>La aclaración de dudas durante el desarrollo de la práctica fue</td>
+                                              <td width="15%" align="center" ><input type="checkbox" name="id_preg7" value="7"/></td>
+                                       </tr>
+				                        					           <tr> 
+              				                  <td >8</td>
+                                              <td>La puntualidad al iniciar la práctica fue</td>
+                                              <td width="15%" align="center" ><input type="checkbox" name="id_preg8" value="8"/></td>
+                                       </tr>
+				                        
+                      
+                                  <tr bgcolor="#ccc">
+                                        <td ><h4>D</h4></td>
+                                        <td ><h4>Instalaciones</h4></td>
+                                        <td width="15%" align="center" ><h4>Activa</h4></td>                      
+                                 </tr>
+                                       					           <tr> 
+              				                  <td >9</td>
+                                              <td>Las instalaciones del laboratorio fueron</td>
+                                              <td width="15%" align="center" ><input type="checkbox" name="id_preg9" value="9"/></td>
+                                       </tr>
+				                        					           <tr> 
+              				                  <td >10</td>
+                                              <td>¿Se cuenta con las mesas, sillas y /o bancos necesarios para la realización de la práctica?</td>
+                                              <td width="15%" align="center" ><input type="checkbox" name="id_preg10" value="10"/></td>
+                                       </tr>
+				                        					           <tr> 
+              				                  <td >11</td>
+                                              <td>Consideras que el orden, la limpieza y las condiciones de seguridad fueron</td>
+                                              <td width="15%" align="center" ><input type="checkbox" name="id_preg11" value="11"/></td>
+                                       </tr>
+				                        
+                      
+                                  <tr bgcolor="#ccc">
+                                        <td ><h4>E</h4></td>
+                                        <td ><h4>Satisfacción del servicio</h4></td>
+                                        <td width="15%" align="center" ><h4>Activa</h4></td>                      
+                                 </tr>
+                                       					           <tr> 
+              				                  <td >12</td>
+                                              <td>Mi satisfacción respecto al servicio proporcionado en el laboratorio fue</td>
+                                              <td width="15%" align="center" ><input type="checkbox" name="id_preg12" value="12"/></td>
+                                       </tr>
+				                        					           <tr> 
+              				                  <td >13</td>
+                                              <td>¿El servicio proporcionado en el laboratorio cumplió con tus expectativas iniciales en cuanto a los conocimientos y habilidades adquiridas?</td>
+                                              <td width="15%" align="center" ><input type="checkbox" name="id_preg13" value="13"/></td>
+                                       </tr>
+				                        
+                      
+                                  <tr bgcolor="#ccc">
+                                        <td ><h4>F</h4></td>
+                                        <td ><h4>Atención de fallas</h4></td>
+                                        <td width="15%" align="center" ><h4>Activa</h4></td>                      
+                                 </tr>
+                                       					           <tr> 
+              				                  <td >14</td>
+                                              <td>¿Se presentaron fallas del equipo de cómputo durante la práctica?</td>
+                                              <td width="15%" align="center" ><input type="checkbox" name="id_preg14" value="14"/></td>
+                                       </tr>
+				                        					           <tr> 
+              				                  <td >15</td>
+                                              <td>¿Las fallas se atendieron oportunamente?</td>
+                                              <td width="15%" align="center" ><input type="checkbox" name="id_preg15" value="15"/></td>
+                                       </tr>
+				                        
+                      
+                                  <tr bgcolor="#ccc">
+                                        <td ><h4>G</h4></td>
+                                        <td ><h4>Objetivos de la práctica</h4></td>
+                                        <td width="15%" align="center" ><h4>Activa</h4></td>                      
+                                 </tr>
+                                       					           <tr> 
+              				                  <td >16</td>
+                                              <td>¿El profesor dio a conocer el objetivo al inicio de la práctica?</td>
+                                              <td width="15%" align="center" ><input type="checkbox" name="id_preg16" value="16"/></td>
+                                       </tr>
+				                        					           <tr> 
+              				                  <td >17</td>
+                                              <td>¿Consideras que se cumplieron los objetivos de la práctica?</td>
+                                              <td width="15%" align="center" ><input type="checkbox" name="id_preg17" value="17"/></td>
+                                       </tr>
+				                	                   <br/>
+                      <br/>             
+  
+              </div> <!--div panel body-->
+            
+            
+         <div class="col_one_third panel panel-default col_last">
+                                   <div class="panel-heading">
+                                        
+					              <h4 class="panel-title"> Laboratorios </h4>
+                                  </div> <!--<div class="panel-heading">-->
+                                   <div class="panel-body">
+                                        <p>
+                                           <div id="muestraLabs">
+                                        
+                                   
+                                            </div> <!--fin de <div id="muestraLabs">-->
+                                         </p> 
+                                        </div><!--fin de <div id="panel-body">-->
+                                                                      
+                           
+                       <tr>  
+                          
+                            <td colspan="3" align="right">
+                            <div style="text-align:center;">  
+                                 <input type="submit" name="accionp" value="Guardar" />
+                                 <input type="reset" name="accionp"  value="Limpiar" />
+	                             <input type="submit" name="accionp" value="Cancelar" />
+                            </div> 
+                            </td>
+                           
+                      </tr>
+	
+                      
+                   </table>  
+            
+                        <input name="p" type="hidden" value="18" />
+                             
+                          </form>
+     
+                     </div> <!-- <div class="col_one_third panel panel-default col_last">-->                                    
+  </div> <!--<div class="col_two_third panel panel-default">-->
+  </div>
+
+
+
+
+
+</section>
+
+   <!--     
+    </div><!-- #wrapper end 'images/footer-bg.jpg'-->
+
+    <!-- Go To Top
+    ============================================= -->
+    <div id="gotoTop" class="icon-angle-up"></div>
+
+    <!-- Footer Scripts
+    ============================================= -->
+    <script type="text/javascript" src="../js/functions.js"></script>
+
+</body>
+</html>           
+            
+        
+            
+
