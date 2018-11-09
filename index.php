@@ -2,6 +2,7 @@
 <html dir="ltr" lang="es">
 <head>
 <!--cambios de githib-->
+	<!--cambios de githib moficadod a las 12:51 pm-->
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 	<meta name="author" content="Facultad de Ingenieria" />
 
